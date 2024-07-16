@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Esta es mi primera aplicación real de Node",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch src/app.js"
+    "dev": "nodemon",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/app.js"
   },
   "author": "Daniel Benavides",
   "license": "MIT",
@@ -15,5 +16,13 @@
     "get-age": "^1.0.1",
     "uuid": "^9.0.0",
     "winston": "^3.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.4",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
   }
 }
