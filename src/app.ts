@@ -1,5 +1,4 @@
-import { getPokemonById } from './js-foundation/06-promises.js'
-
+import { getPokemonById } from './js-foundation/06-promises'
 import { buildLogger } from './plugins/logger.plugin'
 
 const id = Math.floor(Math.random() * (1000 - 1 + 1) + 1)
