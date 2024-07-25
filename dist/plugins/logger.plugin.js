@@ -23,32 +23,27 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildLogger = void 0;
+exports.buildLogger = exports.logger = void 0;
 const winston_1 = __importStar(require("winston"));
 const { combine, timestamp, json } = winston_1.format;
-const logger = winston_1.default.createLogger({
+exports.logger = winston_1.default.createLogger({
     level: 'info',
     format: combine(timestamp(), json()),
-    defaultMeta: { service: 'user-service' },
     transports: [
-        //
-        // - Write all logs with importance level of `error` or less to `error.log`
-        // - Write all logs with importance level of `info` or less to `combined.log`
-        //
         new winston_1.default.transports.File({ filename: 'error.log', level: 'error' }),
         new winston_1.default.transports.File({ filename: 'combined.log' })
     ]
 });
-logger.add(new winston_1.default.transports.Console({
+exports.logger.add(new winston_1.default.transports.Console({
     format: winston_1.default.format.simple()
 }));
 const buildLogger = (service) => {
     return {
         log: (message) => {
-            logger.log('info', { message, service });
+            exports.logger.log('info', { message, service });
         },
         error: (message) => {
-            logger.error('error', { message, service });
+            exports.logger.error('error', { message, service });
         }
     };
 };

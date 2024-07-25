@@ -10,10 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getPokemonById = void 0;
-const http_client_plugin_js_1 = require("../plugins/http-client.plugin.js");
+const http_client_plugin_1 = require("../plugins/http-client.plugin");
 const getPokemonById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-    const pokemon = yield http_client_plugin_js_1.httpClientPlugin.get(url);
-    return pokemon.name;
+    try {
+        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        const pokemon = yield http_client_plugin_1.httpClientPlugin.get(url);
+        return pokemon.name;
+    }
+    catch (error) {
+        throw `Pokemon not found with id ${id}`;
+    }
 });
 exports.getPokemonById = getPokemonById;
